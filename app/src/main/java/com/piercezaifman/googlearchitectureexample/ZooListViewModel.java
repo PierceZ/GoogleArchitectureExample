@@ -1,10 +1,11 @@
 package com.piercezaifman.googlearchitectureexample;
 
 import android.arch.lifecycle.LiveData;
-import android.arch.lifecycle.MutableLiveData;
 import android.arch.lifecycle.ViewModel;
 
 import java.util.List;
+
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by piercezaifman on 2017-09-19.
@@ -12,17 +13,23 @@ import java.util.List;
 
 public class ZooListViewModel extends ViewModel {
 
-    private MutableLiveData<List<Zoo>> mZoosLiveData;
+    private DisposableLiveData<List<Zoo>> mZoosLiveData;
 
     public ZooListViewModel() {
-        mZoosLiveData = new MutableLiveData<>();
+        mZoosLiveData = new DisposableLiveData<>();
+        Disposable disposable = Repository.get().subscribeToZooList(this::updateZoos);
+        mZoosLiveData.setDisposable(disposable);
     }
 
-    public void refresh() {
-        Repository.get().loadZoos(mZoosLiveData);
+    private void updateZoos(List<Zoo> zoos) {
+        mZoosLiveData.setValue(zoos);
     }
 
     public LiveData<List<Zoo>> getZoos() {
         return mZoosLiveData;
+    }
+
+    public void addZoo(Zoo zoo) {
+        Repository.get().addZoo(zoo);
     }
 }

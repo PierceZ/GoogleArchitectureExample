@@ -11,6 +11,8 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
+    private ZooListViewModel mViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,13 +23,12 @@ public class MainActivity extends AppCompatActivity {
         ZooAdapter adapter = new ZooAdapter();
         recyclerView.setAdapter(adapter);
 
-        ZooListViewModel viewModel = ViewModelProviders.of(this).get(ZooListViewModel.class);
-        viewModel.getZoos().observe(this, (adapter::update));
-        viewModel.refresh();
+        mViewModel = ViewModelProviders.of(this).get(ZooListViewModel.class);
+        mViewModel.getZoos().observe(this, (adapter::update));
 
         findViewById(R.id.activity_main_fab).setOnClickListener(v -> {
-            Repository.get().addZoo(new Zoo("My new zoo (" + new Random().nextInt(1000) + ")", new ArrayList<>()));
-            viewModel.refresh();
+            Zoo zoo = new Zoo("My new zoo (" + new Random().nextInt(1000) + ")", new ArrayList<>());
+            mViewModel.addZoo(zoo);
         });
     }
 }

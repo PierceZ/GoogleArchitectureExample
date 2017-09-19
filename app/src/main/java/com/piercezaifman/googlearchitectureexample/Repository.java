@@ -1,9 +1,12 @@
 package com.piercezaifman.googlearchitectureexample;
 
-import android.arch.lifecycle.MutableLiveData;
+import com.jakewharton.rxrelay2.BehaviorRelay;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 
 /**
  * Created by piercezaifman on 2017-09-19.
@@ -13,6 +16,7 @@ public class Repository {
 
     private static Repository sRepository;
 
+    private BehaviorRelay<List<Zoo>> mZooRelay = BehaviorRelay.create();
     private List<Zoo> mZoos = new ArrayList<>();
 
     public static Repository get() {
@@ -51,6 +55,11 @@ public class Repository {
         mZoos.add(canadaZoo);
         mZoos.add(australiaZoo);
         mZoos.add(brazilZoo);
+        loadZoos();
+    }
+
+    public Disposable subscribeToZooList(Consumer<List<Zoo>> consumer) {
+        return mZooRelay.subscribe(consumer);
     }
 
     /**
@@ -58,12 +67,13 @@ public class Repository {
      * NOTE: This would be where I could trigger a database load and a server request. To keep it simple I'm just loading
      * some hard-coded data.
      */
-    public void loadZoos(MutableLiveData<List<Zoo>> liveData) {
-        liveData.setValue(mZoos);
+    public void loadZoos() {
+        mZooRelay.accept(mZoos);
     }
 
     public void addZoo(Zoo newZoo) {
         mZoos.add(newZoo);
+        loadZoos();
     }
 
 }
