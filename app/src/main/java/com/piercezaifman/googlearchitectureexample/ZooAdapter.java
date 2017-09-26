@@ -6,11 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.piercezaifman.googlearchitectureexample.model.Zoo;
+
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by piercezaifman on 2017-09-19.
+ * Created by Pierce Zaifman on 2017-09-19.
  */
 
 public class ZooAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

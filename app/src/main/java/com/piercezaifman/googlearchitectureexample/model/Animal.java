@@ -1,19 +1,39 @@
-package com.piercezaifman.googlearchitectureexample;
+package com.piercezaifman.googlearchitectureexample.model;
+
+import io.objectbox.annotation.Entity;
+import io.objectbox.annotation.Id;
+import io.objectbox.relation.ToOne;
 
 /**
- * Created by piercezaifman on 2017-09-19.
+ * Created by Pierce Zaifman on 2017-09-19.
  */
-
+@Entity
 public class Animal {
+
+    @Id
+    private long id;
 
     private String name;
     private String image;
     private String group;
 
+    public ToOne<Zoo> zoo;
+
+    public Animal() {
+    }
+
     public Animal(String name, String image, String group) {
         this.name = name;
         this.image = image;
         this.group = group;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
