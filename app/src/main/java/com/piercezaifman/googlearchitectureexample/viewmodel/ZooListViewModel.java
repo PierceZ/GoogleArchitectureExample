@@ -4,7 +4,7 @@ import android.arch.lifecycle.LiveData;
 import android.arch.lifecycle.MutableLiveData;
 
 import com.piercezaifman.googlearchitectureexample.model.Zoo;
-import com.piercezaifman.googlearchitectureexample.repository.Repository;
+import com.piercezaifman.googlearchitectureexample.repository.ZooRepository;
 
 import java.util.List;
 
@@ -20,19 +20,19 @@ public class ZooListViewModel extends BaseViewModel {
 
     public ZooListViewModel() {
         mZoosLiveData = new MutableLiveData<>();
-        DataSubscription subscription = Repository.get().subscribeToZooList(this::updateZoos);
+        DataSubscription subscription = ZooRepository.subscribeToZooList(this::refreshZoos);
         addSubscription(subscription);
     }
 
-    private void updateZoos(List<Zoo> zoos) {
-        mZoosLiveData.setValue(zoos);
+    private void refreshZoos(List<Zoo> zoos) {
+        mZoosLiveData.postValue(zoos);
     }
 
     public LiveData<List<Zoo>> getZoos() {
         return mZoosLiveData;
     }
 
-    public void addZoo(Zoo zoo) {
-        Repository.get().addZoo(zoo);
+    public void refreshZoos() {
+        ZooRepository.refreshZoos();
     }
 }
