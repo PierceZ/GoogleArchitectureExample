@@ -30,7 +30,7 @@ public class ZooDAO {
     }
 
     public static DataSubscription subscribeToZoo(DataObserver<Zoo> observer, long id, boolean singleUpdate) {
-        SubscriptionBuilder<Zoo> builder = getZooBox().query().equal(Zoo_.id, id).build().subscribe().transform(list -> {
+        SubscriptionBuilder<Zoo> builder = getZooBox().query().eager(Zoo_.animals).equal(Zoo_.id, id).build().subscribe().transform(list -> {
             if (list.size() == 0) {
                 return null;
             } else {

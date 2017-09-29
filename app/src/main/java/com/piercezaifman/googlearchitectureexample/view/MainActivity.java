@@ -1,6 +1,7 @@
 package com.piercezaifman.googlearchitectureexample.view;
 
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
@@ -23,8 +24,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
         ZooAdapter adapter = new ZooAdapter();
         adapter.setOnClickListener((view, position) -> {
-            DialogFragment zooFragment = ZooFragment.newInstance(adapter.getItemId(position));
-            zooFragment.show(getSupportFragmentManager(), ZooFragment.class.getName());
+            Intent zooIntent = new Intent(MainActivity.this, ZooActivity.class);
+            zooIntent.putExtra(ZooActivity.EXTRA_ZOO_ID, adapter.getItemId(position));
+            startActivity(zooIntent);
         });
         recyclerView.setAdapter(adapter);
 

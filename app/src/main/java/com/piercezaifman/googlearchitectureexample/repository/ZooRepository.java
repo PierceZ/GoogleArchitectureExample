@@ -27,6 +27,19 @@ public class ZooRepository {
         return ZooDAO.subscribeToZoo(observer, id, singleUpdate);
     }
 
+    public static void refreshZoo(long id) {
+        ZooAPI.loadZoo(id, zooResponse -> {
+            if (zooResponse != null && zooResponse.getStatus() == Response.STATUS_SUCCESS) {
+                ZooParser parser = new ZooParser(zooResponse.getPayload());
+                parser.parseZoo();
+                Zoo zoo = parser.getZoo();
+                if (zoo != null) {
+                    ZooDAO.insertZoo(zoo);
+                }
+            }
+        });
+    }
+
     public static void refreshZoos() {
         ZooAPI.loadZoos(zoosResponse -> {
             if (zoosResponse != null && zoosResponse.getStatus() == Response.STATUS_SUCCESS) {

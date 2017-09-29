@@ -53,4 +53,18 @@ public class ZooAPI {
             responseObserver.onChanged(response);
         });
     }
+
+    public static void loadZoo(long id, Observer<Response> responseObserver) {
+        //Fake network request
+        AsyncTask.execute(() -> {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException ignored) {
+            }
+
+            // Fake response, it should come from the server
+            Response response = new Response(Response.STATUS_FAIL, "Error occurred!");
+            responseObserver.onChanged(response);
+        });
+    }
 }
