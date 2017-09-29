@@ -1,4 +1,4 @@
-package com.piercezaifman.googlearchitectureexample;
+package com.piercezaifman.googlearchitectureexample.view;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.piercezaifman.googlearchitectureexample.R;
+import com.piercezaifman.googlearchitectureexample.RecyclerViewClickListener;
 import com.piercezaifman.googlearchitectureexample.model.Zoo;
 
 import java.util.ArrayList;

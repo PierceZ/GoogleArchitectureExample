@@ -1,4 +1,4 @@
-package com.piercezaifman.googlearchitectureexample;
+package com.piercezaifman.googlearchitectureexample.view;
 
 import android.app.Dialog;
 import android.arch.lifecycle.ViewModelProviders;
@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.piercezaifman.googlearchitectureexample.R;
 import com.piercezaifman.googlearchitectureexample.model.Zoo;
 import com.piercezaifman.googlearchitectureexample.repository.response.Response;
 import com.piercezaifman.googlearchitectureexample.viewmodel.ZooFragmentViewModel;

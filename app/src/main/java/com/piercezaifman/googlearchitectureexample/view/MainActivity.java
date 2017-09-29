@@ -1,4 +1,4 @@
-package com.piercezaifman.googlearchitectureexample;
+package com.piercezaifman.googlearchitectureexample.view;
 
 import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.piercezaifman.googlearchitectureexample.R;
 import com.piercezaifman.googlearchitectureexample.viewmodel.ZooListViewModel;
 
 public class MainActivity extends AppCompatActivity {
