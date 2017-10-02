@@ -32,7 +32,6 @@ public class ZooAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         notifyDataSetChanged();
     }
 
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_zoo, parent, false);
@@ -71,7 +70,10 @@ public class ZooAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         @Override
         public void onClick(View view) {
-            mListener.onClick(view, getAdapterPosition());
+            int pos = getAdapterPosition();
+            if (pos != RecyclerView.NO_POSITION) {
+                mListener.onClick(view, pos);
+            }
         }
     }
 }
