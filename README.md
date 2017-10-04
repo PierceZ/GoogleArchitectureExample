@@ -1,5 +1,9 @@
 # Google Architecture Example
-An example implementation of Google's architecture, found here: https://developer.android.com/topic/libraries/architecture/index.html
+To understand this example, check out this post I wrote to explain it:
+
+[Applying Google's Android architecture with ObjectBox database](https://piercezaifman.com/applying-googles-android-architecture-with-objectbox-database/)
+
+This is an example implementation of Google's architecture, found here: https://developer.android.com/topic/libraries/architecture/index.html
 
 ![Architecture diagram](https://i.imgur.com/xURcjt7.png)
 
